@@ -16,13 +16,14 @@ const Root = () => {
 
   return (
     <>
-      {gameStage === 'start' ? (
+      {/* {gameStage === 'start' ? (
         <StartScreen onStartGame={goToGameScreen} />
       ) : gameStage === 'game' ? (
-        <GameScreen enteredNickname={enteredNickname} />
+        <GameScreen/>
       ) : (
-        <ResultScreen gameResult={gameResult} />
-      )}
+        <ResultScreen enteredNickname={enteredNickname} />
+      )} */}
+      <GameScreen enteredNickname={enteredNickname} />
     </>
   );
 };
