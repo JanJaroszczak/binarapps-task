@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import GameScreen from './components/GameScreen';
+import GlobalStyle from './globalStyles/GlobalStyle';
 import ResultScreen from './components/ResultScreen';
 import StartScreen from './components/StartScreen';
 
@@ -16,6 +17,7 @@ const Root = () => {
 
   return (
     <>
+      <GlobalStyle />
       {/* {gameStage === 'start' ? (
         <StartScreen onStartGame={goToGameScreen} />
       ) : gameStage === 'game' ? (

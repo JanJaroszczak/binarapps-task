@@ -6,13 +6,24 @@ export const StyledGameBoardWrapper = styled.div`
   grid-auto-rows: 40px;
   margin: 0 auto;
   padding: 30px;
-  width: 400px;
+  width: 500px;
   gap: 30px;
 
   border: 1px solid black;
 
-  @media (max-width: 450px) {
+  @media (max-width: 550px) {
     grid-template-columns: repeat(3, auto);
+    width: 400px;
+  }
+
+  @media (max-width: 430px) {
+    grid-template-columns: repeat(2, auto);
+    gap: 20px;
     width: 300px;
+    padding: 20px;
+  }
+
+  @media (max-width: 330px) {
+    width: 260px;
   }
 `;
