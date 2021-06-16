@@ -5,6 +5,10 @@ export const StyledTitle = styled.h1`
   text-align: center;
   font-size: 3rem;
   text-transform: capitalize;
+
+  @media (max-width: 330px) {
+    font-size: 2.7rem;
+  }
 `;
 
 export const StyledForm = styled.form`
@@ -20,6 +24,7 @@ export const StyledInput = styled.input`
   padding: 10px;
   border: 1px solid gray;
   border-radius: 5px;
+  outline: none;
 
   @media (max-width: 430px) {
     width: 350px;
@@ -30,6 +35,6 @@ export const StyledInput = styled.input`
   }
 
   @media (max-width: 330px) {
-    width: 265px;
+    width: 260px;
   }
 `;

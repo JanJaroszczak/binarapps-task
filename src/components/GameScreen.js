@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CommonButton from './CommonButton';
 import Word from './Word';
@@ -12,10 +12,12 @@ import {
   StyledContainer,
   StyledQuestion,
   StyledGameBoardWrapper,
+  StyledAlert,
 } from './styles/StyledGameScreen';
 
 const GameScreen = () => {
-  const [wordsData, setWordsData] = useState(null);
+  const [wordsLocalData, setWordsLocalData] = useState(null);
+  const [isAlertOn, setIsAlertOn] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -34,13 +36,13 @@ const GameScreen = () => {
   }, []);
 
   const onUpdateWordsDataArray = (clickedWord, isMarked) => {
-    if (wordsData) {
-      const updatedWordsData = wordsData.map((word) => {
+    if (wordsLocalData) {
+      const updatedWordsData = wordsLocalData.map((word) => {
         if (word.word === clickedWord) {
           word.isMarked = isMarked;
         }
       });
-      setWordsData(updatedWordsData);
+      setWordsLocalData(updatedWordsData);
       console.log(wordsDataArray);
     }
   };
@@ -53,22 +55,30 @@ const GameScreen = () => {
     />
   ));
 
-  // const checkAnswers = () => {
-  //   dispatch(changeGameStage('check'));
-  // };
+  const wordsStoreData = useSelector(({ wordsData }) => wordsData);
+
+  const checkAnswers = () => {
+    const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
+    console.log(isAtLeastOneMarked);
+    if (isAtLeastOneMarked) dispatch(changeGameStage('check'));
+    else {
+      setIsAlertOn(true);
+      setTimeout(() => {
+        setIsAlertOn(false);
+      }, 3000);
+    }
+  };
 
   return (
     <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
-      <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
-      <CommonButton clicked={() => dispatch(changeGameStage('check'))} />
-      {/* {gameStage === 'start' ? (
-        <CommonButton clicked={checkAnswers} label={'Check Result'} />
-      ) : (
-        <CommonButton clicked={checkAnswers} label={'Check Result'} />
-      )} */}
-      {/* {gameStage === 'check' ? 'Finish Game' : 'Check Result'} */}
-      {/* </CommonButton> */}
+      <StyledGameBoardWrapper>
+        {wordsToRender}
+        {/* {isAlertOn && (
+          <StyledAlert>Please choose at least one word.</StyledAlert>
+        )} */}
+      </StyledGameBoardWrapper>
+      <CommonButton clicked={checkAnswers} />
     </StyledContainer>
   );
 };

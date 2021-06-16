@@ -21,14 +21,14 @@ const Root = () => {
   return (
     <>
       <GlobalStyle />
-      {gameStage === 'start' ? (
+      {/* {gameStage === 'start' ? (
         <StartScreen />
       ) : gameStage === 'game' || gameStage === 'check' ? (
         <GameScreen />
       ) : (
         <ResultScreen />
-      )}
-      {/* <GameScreen enteredNickname={enteredNickname} /> */}
+      )} */}
+      <GameScreen />
     </>
   );
 };
