@@ -12,7 +12,28 @@ import {
 const GameScreen = () => {
   const drawnSet = gameData[Math.floor(Math.random() * gameData.length)];
 
-  const wordsToRender = drawnSet.allWords.map((word) => <Word word={word} />);
+  const isWordMarkedArray = drawnSet.allWords.map((word) => ({
+    word,
+    isMarked: false,
+  }));
+
+  const onUpdateIsWordMarkedArray = (clickedWord, isMarked) => {
+    isWordMarkedArray.forEach((word) => {
+      if (word.word === clickedWord) {
+        word.isMarked = isMarked;
+      }
+    });
+
+    console.log(isWordMarkedArray);
+  };
+
+  const wordsToRender = drawnSet.allWords.map((word, index) => (
+    <Word
+      word={word}
+      key={index}
+      updateIsWordMarkedArray={onUpdateIsWordMarkedArray}
+    />
+  ));
 
   return (
     <>

@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const StyledWord = styled.div`
+export const StyledWordWrapper = styled.div`
   grid-column-end: ${({ gridSpan }) => `span ${gridSpan}`};
   justify-self: ${({ gridJustifySelf }) => `${gridJustifySelf}`};
   align-self: ${({ gridAlignSelf }) => `${gridAlignSelf}`};

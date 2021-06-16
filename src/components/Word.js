@@ -1,8 +1,10 @@
 import React from 'react';
 
-import { StyledWord } from './styles/StyledWord';
+import WordButton from './WordButton';
 
-const Word = ({ word }) => {
+import { StyledWordWrapper } from './styles/StyledWord';
+
+const Word = ({ word, updateIsWordMarkedArray }) => {
   const gridSelfValues = ['start', 'center', 'end'];
 
   const getGridSelfValue = () =>
@@ -11,13 +13,13 @@ const Word = ({ word }) => {
   const getGridSpanNumber = () => Math.floor(Math.random() * 2) + 1;
 
   return (
-    <StyledWord
+    <StyledWordWrapper
       gridSpan={getGridSpanNumber()}
       gridJustifySelf={getGridSelfValue()}
       gridAlignSelf={getGridSelfValue()}
     >
-      {word}
-    </StyledWord>
+      <WordButton word={word} onIsMarked={updateIsWordMarkedArray} />
+    </StyledWordWrapper>
   );
 };
 
