@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector } from 'react-redux';
 
-import GameScreen from './components/GameScreen';
+import GameScreen from './screens/GameScreen';
 import GlobalStyle from './globalStyles/GlobalStyle';
-import ResultScreen from './components/ResultScreen';
-import StartScreen from './components/StartScreen';
+import ResultScreen from './screens/ResultScreen';
+import StartScreen from './screens/StartScreen';
 
 const Root = () => {
   // const [gameStage, setGameStage] = useState('start');

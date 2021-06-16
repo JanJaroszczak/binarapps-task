@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import CommonButton from './CommonButton';
-import Word from './Word';
+import CommonButton from '../components/CommonButton';
+import Word from '../components/Word';
 
 import { updateWordsData, changeGameStage } from '../store/actions';
 
@@ -86,12 +86,21 @@ const GameScreen = () => {
       } else {
         console.log('log from else');
         setIsAlertOn(true);
-        setTimeout(() => {
-          setIsAlertOn(false);
-        }, 3000);
       }
     }
   };
+
+  useEffect(() => {
+    let timer;
+    if (isAlertOn) {
+      timer = setTimeout(() => {
+        setIsAlertOn(false);
+      }, 2000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isAlertOn]);
 
   return (
     <StyledContainer>

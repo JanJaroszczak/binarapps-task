@@ -12,6 +12,7 @@ export const StyledTitle = styled.h1`
 `;
 
 export const StyledForm = styled.form`
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -37,4 +38,16 @@ export const StyledInput = styled.input`
   @media (max-width: 330px) {
     width: 260px;
   }
+`;
+
+export const StyledAlert = styled.span`
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 270px;
+  font-size: 1.2rem;
+  color: red;
+  text-align: center;
 `;

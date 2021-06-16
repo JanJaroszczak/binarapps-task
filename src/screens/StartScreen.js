@@ -1,7 +1,7 @@
-import React, { useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 
-import CommonButton from './CommonButton';
+import CommonButton from '../components/CommonButton';
 
 import { changeGameStage, setPlayerName } from '../store/actions';
 
@@ -9,17 +9,37 @@ import {
   StyledTitle,
   StyledForm,
   StyledInput,
+  StyledAlert,
 } from './styles/StyledStartScreen';
 
 const StartScreen = () => {
+  const [isAlertOn, setIsAlertOn] = useState(false);
+
   const nicknameInput = useRef();
   const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    dispatch(setPlayerName(nicknameInput.current.value));
-    dispatch(changeGameStage('game'));
+
+    if (nicknameInput.current.value === '') {
+      setIsAlertOn(true);
+    } else {
+      dispatch(setPlayerName(nicknameInput.current.value));
+      dispatch(changeGameStage('game'));
+    }
   };
+
+  useEffect(() => {
+    let timer;
+    if (isAlertOn) {
+      timer = setTimeout(() => {
+        setIsAlertOn(false);
+      }, 3000);
+    }
+    return () => {
+      clearTimeout(timer);
+    };
+  }, [isAlertOn]);
 
   return (
     <>
@@ -31,6 +51,7 @@ const StartScreen = () => {
           placeholder="Enter your nickname here..."
         />
         <CommonButton type="submit" />
+        {isAlertOn && <StyledAlert>Please enter your nickname.</StyledAlert>}
       </StyledForm>
     </>
   );
