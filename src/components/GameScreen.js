@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CommonButton from './CommonButton';
 import Word from './Word';
 
-import { updateWordsData } from '../store/actions';
+import { updateWordsData, isAnswersCheck } from '../store/actions';
 
 import { gameData } from '../helpers/gameData';
 
@@ -25,6 +25,7 @@ const GameScreen = () => {
     word,
     isMarked: false,
     isGood: drawnSet.goodWords.includes(word),
+    isAnswerCorrect: null,
   }));
 
   useEffect(() => {
@@ -52,7 +53,9 @@ const GameScreen = () => {
     />
   ));
 
-  const checkAnswers = () => {};
+  const checkAnswers = () => {
+    dispatch(isAnswersCheck(true));
+  };
 
   return (
     <StyledContainer>

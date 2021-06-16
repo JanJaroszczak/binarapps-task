@@ -3,10 +3,11 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { updateWordsData } from '../store/actions';
 
-import { StyledWordButton } from './styles/StyledWordButton';
+import { StyledWordButton, StyledResult } from './styles/StyledWordButton';
 
 const WordButton = ({ wordToRender }) => {
   const [isMarked, setIsMarked] = useState(false);
+  const [goodOrBadAnswer, setGoodOrBadAnswer] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -17,9 +18,15 @@ const WordButton = ({ wordToRender }) => {
     if (wordsData) {
       const updatedWordsData = wordsData.map((word) => {
         if (word.word === wordToRender) {
+          let result = null;
+
+          if (word.isGood) result = 'good';
+          else result = 'bad';
+
           return {
             ...word,
             isMarked: !isMarked,
+            isAnswerCorrect: result,
           };
         } else {
           return { ...word };
@@ -27,18 +34,34 @@ const WordButton = ({ wordToRender }) => {
       });
       dispatch(updateWordsData(updatedWordsData));
       setIsMarked((prevState) => !prevState);
-      console.log(updatedWordsData);
     }
+  };
+
+  const checkAnswers = () => {
+    wordsData.forEach((word) => {
+      if (word.word === wordToRender) {
+        if (word.isAnswerCorrect === 'good') setGoodOrBadAnswer('good');
+        else if (word.isAnswerCorrect === 'bad') setGoodOrBadAnswer('bad');
+      }
+    });
   };
 
   useEffect(() => {
     if (isAnswersCheck) {
+      checkAnswers();
     }
   }, [isAnswersCheck]);
 
   return (
-    <StyledWordButton onClick={onMarkHandler} isMarked={isMarked}>
+    <StyledWordButton
+      onClick={onMarkHandler}
+      isMarked={isMarked}
+      goodOrBadAnswer={goodOrBadAnswer}
+    >
       {wordToRender}
+      <StyledResult goodOrBadAnswer={goodOrBadAnswer}>
+        {goodOrBadAnswer}
+      </StyledResult>
     </StyledWordButton>
   );
 };
