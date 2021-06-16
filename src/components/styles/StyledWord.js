@@ -8,7 +8,7 @@ export const StyledWord = styled.div`
 
   /* border: 1px solid black; */
 
-  @media (max-width: 330px) {
+  @media (max-width: 360px) {
     font-size: 1.2rem;
   }
 `;

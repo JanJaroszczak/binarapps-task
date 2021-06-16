@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 export const StyledQuestion = styled.h3`
-  margin: 30px 0;
+  margin: 30px auto;
   text-align: center;
   font-size: 2rem;
   text-transform: capitalize;
@@ -23,14 +23,12 @@ export const StyledGameBoardWrapper = styled.div`
     width: 400px;
   }
 
-  @media (max-width: 430px) {
-    grid-template-columns: repeat(2, auto);
-    gap: 20px;
-    width: 300px;
+  @media (max-width: 410px) {
+    width: 350px;
     padding: 20px;
   }
 
-  @media (max-width: 330px) {
-    width: 260px;
+  @media (max-width: 360px) {
+    width: 275px;
   }
 `;
