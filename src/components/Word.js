@@ -17,7 +17,7 @@ const Word = () => {
       gridSpan={getGridSpanNumber()}
       gridJustifySelf={getGridJustifySelfValue()}
     >
-      TEST
+      TESTasdasdsa
     </StyledWord>
   );
 };

@@ -2,24 +2,22 @@ import React from 'react';
 
 import Word from './Word';
 
-import { StyledGameBoardWrapper, StyledWord } from './styles/StyledGameScreen';
+import { StyledGameBoardWrapper } from './styles/StyledGameScreen';
 
 const GameScreen = () => {
   return (
-    <>
-      <StyledGameBoardWrapper>
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-        <Word />
-      </StyledGameBoardWrapper>
-    </>
+    <StyledGameBoardWrapper>
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+      <Word />
+    </StyledGameBoardWrapper>
   );
 };
 
