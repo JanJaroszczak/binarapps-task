@@ -1,10 +1,12 @@
 import React from 'react';
 
+import CommonButton from './CommonButton';
 import Word from './Word';
 
 import { gameData } from '../helpers/gameData';
 
 import {
+  StyledContainer,
   StyledQuestion,
   StyledGameBoardWrapper,
 } from './styles/StyledGameScreen';
@@ -36,10 +38,11 @@ const GameScreen = () => {
   ));
 
   return (
-    <>
+    <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
       <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
-    </>
+      <CommonButton>Check Answers</CommonButton>
+    </StyledContainer>
   );
 };
 

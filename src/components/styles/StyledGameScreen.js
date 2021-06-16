@@ -1,8 +1,13 @@
 import styled from 'styled-components';
 
+export const StyledContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+`;
+
 export const StyledQuestion = styled.h3`
   margin: 30px auto;
-  text-align: center;
   font-size: 2rem;
   text-transform: capitalize;
 `;
