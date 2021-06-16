@@ -1,5 +1,7 @@
 # Wordcloud game
 
+Project has a fully responsive design – from 280px foldable mobiles to desktops.
+
 ### Live version is available [here](https://wordcloud-game.netlify.app/).
 
 <br/>
