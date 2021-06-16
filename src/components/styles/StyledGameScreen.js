@@ -35,6 +35,6 @@ export const StyledGameBoardWrapper = styled.div`
   }
 
   @media (max-width: 360px) {
-    width: 275px;
+    width: 265px;
   }
 `;

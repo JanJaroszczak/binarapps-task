@@ -2,7 +2,8 @@ import { actionsTypes } from './actions/actionsTypes';
 
 const intitialState = {
   wordsData: null,
-  isAnswersCheck: false,
+  gameStage: 'start',
+  playerName: '',
 };
 
 const reducer = (state = intitialState, action) => {
@@ -15,10 +16,16 @@ const reducer = (state = intitialState, action) => {
         wordsData: payload,
       };
 
-    case actionsTypes.IS_ANSWERS_CHECK:
+    case actionsTypes.CHANGE_GAME_STAGE:
       return {
         ...state,
-        isAnswersCheck: payload,
+        gameStage: payload,
+      };
+
+    case actionsTypes.SET_PLAYER_NAME:
+      return {
+        ...state,
+        playerName: payload,
       };
 
     default:

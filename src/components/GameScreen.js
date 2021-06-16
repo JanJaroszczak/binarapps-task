@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import CommonButton from './CommonButton';
 import Word from './Word';
 
-import { updateWordsData, isAnswersCheck } from '../store/actions';
+import { updateWordsData, changeGameStage } from '../store/actions';
 
 import { gameData } from '../helpers/gameData';
 
@@ -53,15 +53,22 @@ const GameScreen = () => {
     />
   ));
 
-  const checkAnswers = () => {
-    dispatch(isAnswersCheck(true));
-  };
+  // const checkAnswers = () => {
+  //   dispatch(changeGameStage('check'));
+  // };
 
   return (
     <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
       <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
-      <CommonButton clicked={checkAnswers}>Check Answers</CommonButton>
+      <CommonButton clicked={() => dispatch(changeGameStage('check'))} />
+      {/* {gameStage === 'start' ? (
+        <CommonButton clicked={checkAnswers} label={'Check Result'} />
+      ) : (
+        <CommonButton clicked={checkAnswers} label={'Check Result'} />
+      )} */}
+      {/* {gameStage === 'check' ? 'Finish Game' : 'Check Result'} */}
+      {/* </CommonButton> */}
     </StyledContainer>
   );
 };
