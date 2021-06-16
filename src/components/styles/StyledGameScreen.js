@@ -7,12 +7,13 @@ export const StyledContainer = styled.div`
 `;
 
 export const StyledQuestion = styled.h3`
-  margin: 30px auto;
+  margin: 35px auto 30px;
   font-size: 2rem;
   text-transform: capitalize;
 `;
 
 export const StyledGameBoardWrapper = styled.div`
+  position: relative;
   display: grid;
   grid-template-columns: repeat(4, auto);
   grid-auto-rows: 40px;
@@ -35,6 +36,18 @@ export const StyledGameBoardWrapper = styled.div`
   }
 
   @media (max-width: 360px) {
-    width: 275px;
+    width: 265px;
   }
+`;
+
+export const StyledAlert = styled.span`
+  position: absolute;
+  bottom: -27px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: block;
+  width: 270px;
+  font-size: 1.2rem;
+  color: red;
+  text-align: center;
 `;

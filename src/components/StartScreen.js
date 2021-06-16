@@ -1,20 +1,37 @@
 import React, { useRef } from 'react';
+import { useDispatch } from 'react-redux';
 
-const StartScreen = ({ onStartGame }) => {
+import CommonButton from './CommonButton';
+
+import { changeGameStage, setPlayerName } from '../store/actions';
+
+import {
+  StyledTitle,
+  StyledForm,
+  StyledInput,
+} from './styles/StyledStartScreen';
+
+const StartScreen = () => {
   const nicknameInput = useRef();
+  const dispatch = useDispatch();
 
   const submitHandler = (event) => {
     event.preventDefault();
-    onStartGame(nicknameInput.current.value);
+    dispatch(setPlayerName(nicknameInput.current.value));
+    dispatch(changeGameStage('game'));
   };
 
   return (
     <>
-      <form onSubmit={submitHandler}>
-        <label htmlFor="nickname">Wordcloud game</label>
-        <input type="text" id="nickname" ref={nicknameInput} />
-        <button type="submit">Play</button>
-      </form>
+      <StyledTitle>Wordcloud game</StyledTitle>
+      <StyledForm onSubmit={submitHandler}>
+        <StyledInput
+          type="text"
+          ref={nicknameInput}
+          placeholder="Enter your nickname here..."
+        />
+        <CommonButton type="submit" />
+      </StyledForm>
     </>
   );
 };

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 
 import CommonButton from './CommonButton';
 import Word from './Word';
@@ -12,14 +12,21 @@ import {
   StyledContainer,
   StyledQuestion,
   StyledGameBoardWrapper,
+  StyledAlert,
 } from './styles/StyledGameScreen';
 
 const GameScreen = () => {
-  const [wordsData, setWordsData] = useState(null);
+  const [wordsLocalData, setWordsLocalData] = useState(null);
+  const [isAlertOn, setIsAlertOn] = useState(false);
 
   const dispatch = useDispatch();
 
-  const drawnSet = gameData[Math.floor(Math.random() * gameData.length)];
+  // const drawnSet = gameData[Math.floor(Math.random() * gameData.length)];
+
+  const drawnSet = React.useMemo(
+    () => gameData[Math.floor(Math.random() * gameData.length)],
+    []
+  );
 
   const wordsDataArray = drawnSet.allWords.map((word) => ({
     word,
@@ -34,34 +41,64 @@ const GameScreen = () => {
   }, []);
 
   const onUpdateWordsDataArray = (clickedWord, isMarked) => {
-    if (wordsData) {
-      const updatedWordsData = wordsData.map((word) => {
+    if (wordsLocalData) {
+      const updatedWordsData = wordsLocalData.map((word) => {
         if (word.word === clickedWord) {
           word.isMarked = isMarked;
         }
       });
-      setWordsData(updatedWordsData);
+      setWordsLocalData(updatedWordsData);
       console.log(wordsDataArray);
     }
   };
 
-  const wordsToRender = drawnSet.allWords.map((word, index) => (
-    <Word
-      wordToRender={word}
-      key={index}
-      updateWordsDataArray={onUpdateWordsDataArray}
-    />
-  ));
+  // const wordsToRender = drawnSet.allWords.map((word, index) => (
+  //   <Word
+  //     wordToRender={word}
+  //     key={index}
+  //     updateWordsDataArray={onUpdateWordsDataArray}
+  //   />
+  // ));
+
+  const wordsToRender = React.useMemo(
+    () =>
+      drawnSet.allWords.map((word, index) => (
+        <Word
+          wordToRender={word}
+          key={index}
+          updateWordsDataArray={onUpdateWordsDataArray}
+        />
+      )),
+    []
+  );
+
+  const wordsStoreData = useSelector(({ wordsData }) => wordsData);
 
   const checkAnswers = () => {
-    dispatch(changeGameStage('check'));
+    const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
+    console.log(isAtLeastOneMarked);
+    if (isAtLeastOneMarked) {
+      setIsAlertOn(false);
+      dispatch(changeGameStage('check'));
+    } else {
+      console.log('log from else');
+      setIsAlertOn(true);
+      setTimeout(() => {
+        setIsAlertOn(false);
+      }, 3000);
+    }
   };
 
   return (
     <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
-      <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
-      <CommonButton clicked={checkAnswers}>Check Answers</CommonButton>
+      <StyledGameBoardWrapper>
+        {wordsToRender}
+        {isAlertOn && (
+          <StyledAlert>Please choose at least one word.</StyledAlert>
+        )}
+      </StyledGameBoardWrapper>
+      <CommonButton clicked={checkAnswers} />
     </StyledContainer>
   );
 };

@@ -3,6 +3,7 @@ import { actionsTypes } from './actions/actionsTypes';
 const intitialState = {
   wordsData: null,
   gameStage: 'start',
+  playerName: '',
 };
 
 const reducer = (state = intitialState, action) => {
@@ -19,6 +20,12 @@ const reducer = (state = intitialState, action) => {
       return {
         ...state,
         gameStage: payload,
+      };
+
+    case actionsTypes.SET_PLAYER_NAME:
+      return {
+        ...state,
+        playerName: payload,
       };
 
     default:

@@ -9,3 +9,8 @@ export const changeGameStage = (gameStage) => ({
   type: actionsTypes.CHANGE_GAME_STAGE,
   payload: gameStage,
 });
+
+export const setPlayerName = (name) => ({
+  type: actionsTypes.SET_PLAYER_NAME,
+  payload: name,
+});

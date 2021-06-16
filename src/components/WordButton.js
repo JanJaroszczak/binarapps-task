@@ -18,9 +18,10 @@ const WordButton = ({ wordToRender }) => {
     if (wordsData) {
       const updatedWordsData = wordsData.map((word) => {
         if (word.word === wordToRender) {
-          let result = null;
+          let result;
 
-          if (word.isGood) result = 'good';
+          if (word.isMarked) result = null;
+          else if (word.isGood) result = 'good';
           else result = 'bad';
 
           return {
