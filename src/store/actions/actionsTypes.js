@@ -1,0 +1,4 @@
+export const actionsTypes = {
+  UPDATE_WORDS_DATA: 'UPDATE_WORDS_DATA',
+  IS_ANSWERS_CHECK: 'IS_ANSWERS_CHECK',
+};

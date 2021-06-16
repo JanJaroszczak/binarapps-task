@@ -4,7 +4,7 @@ import WordButton from './WordButton';
 
 import { StyledWordWrapper } from './styles/StyledWord';
 
-const Word = ({ word, updateIsWordMarkedArray }) => {
+const Word = ({ wordToRender }) => {
   const gridSelfValues = ['start', 'center', 'end'];
 
   const getGridSelfValue = () =>
@@ -18,7 +18,7 @@ const Word = ({ word, updateIsWordMarkedArray }) => {
       gridJustifySelf={getGridSelfValue()}
       gridAlignSelf={getGridSelfValue()}
     >
-      <WordButton word={word} onIsMarked={updateIsWordMarkedArray} />
+      <WordButton wordToRender={wordToRender} />
     </StyledWordWrapper>
   );
 };

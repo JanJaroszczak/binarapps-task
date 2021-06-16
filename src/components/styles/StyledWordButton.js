@@ -4,4 +4,5 @@ export const StyledWordButton = styled.button`
   color: ${({ isMarked }) => (isMarked ? 'gray' : 'black')};
   background-color: transparent;
   border: none;
+  font-weight: 600;
 `;

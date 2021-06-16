@@ -1,7 +1,10 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
 
 import CommonButton from './CommonButton';
 import Word from './Word';
+
+import { updateWordsData } from '../store/actions';
 
 import { gameData } from '../helpers/gameData';
 
@@ -12,36 +15,50 @@ import {
 } from './styles/StyledGameScreen';
 
 const GameScreen = () => {
+  const [wordsData, setWordsData] = useState(null);
+
+  const dispatch = useDispatch();
+
   const drawnSet = gameData[Math.floor(Math.random() * gameData.length)];
 
-  const isWordMarkedArray = drawnSet.allWords.map((word) => ({
+  const wordsDataArray = drawnSet.allWords.map((word) => ({
     word,
     isMarked: false,
+    isGood: drawnSet.goodWords.includes(word),
   }));
 
-  const onUpdateIsWordMarkedArray = (clickedWord, isMarked) => {
-    isWordMarkedArray.forEach((word) => {
-      if (word.word === clickedWord) {
-        word.isMarked = isMarked;
-      }
-    });
+  useEffect(() => {
+    console.log('render');
+    dispatch(updateWordsData(wordsDataArray));
+  }, []);
 
-    console.log(isWordMarkedArray);
+  const onUpdateWordsDataArray = (clickedWord, isMarked) => {
+    if (wordsData) {
+      const updatedWordsData = wordsData.map((word) => {
+        if (word.word === clickedWord) {
+          word.isMarked = isMarked;
+        }
+      });
+      setWordsData(updatedWordsData);
+      console.log(wordsDataArray);
+    }
   };
 
   const wordsToRender = drawnSet.allWords.map((word, index) => (
     <Word
-      word={word}
+      wordToRender={word}
       key={index}
-      updateIsWordMarkedArray={onUpdateIsWordMarkedArray}
+      updateWordsDataArray={onUpdateWordsDataArray}
     />
   ));
+
+  const checkAnswers = () => {};
 
   return (
     <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
       <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
-      <CommonButton>Check Answers</CommonButton>
+      <CommonButton clicked={checkAnswers}>Check Answers</CommonButton>
     </StyledContainer>
   );
 };

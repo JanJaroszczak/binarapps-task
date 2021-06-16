@@ -16,10 +16,11 @@ export const StyledGameBoardWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, auto);
   grid-auto-rows: 40px;
+  gap: 30px;
   margin: 0 auto;
   padding: 30px;
   width: 500px;
-  gap: 30px;
+  border-radius: 5px;
 
   border: 1px solid black;
 
