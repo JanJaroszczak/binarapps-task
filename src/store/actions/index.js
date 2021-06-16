@@ -5,12 +5,7 @@ export const updateWordsData = (wordsData) => ({
   payload: wordsData,
 });
 
-export const changeGameStage = (gameStage) => ({
-  type: actionsTypes.CHANGE_GAME_STAGE,
-  payload: gameStage,
-});
-
-export const setPlayerName = (name) => ({
-  type: actionsTypes.SET_PLAYER_NAME,
-  payload: name,
+export const isAnswersCheck = (isAnswersCheckFlag) => ({
+  type: actionsTypes.IS_ANSWERS_CHECK,
+  payload: isAnswersCheckFlag,
 });

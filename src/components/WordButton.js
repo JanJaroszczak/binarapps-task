@@ -12,7 +12,7 @@ const WordButton = ({ wordToRender }) => {
   const dispatch = useDispatch();
 
   const wordsData = useSelector(({ wordsData }) => wordsData);
-  const gameStage = useSelector(({ gameStage }) => gameStage);
+  const isAnswersCheck = useSelector(({ isAnswersCheck }) => isAnswersCheck);
 
   const onMarkHandler = () => {
     if (wordsData) {
@@ -47,10 +47,10 @@ const WordButton = ({ wordToRender }) => {
   };
 
   useEffect(() => {
-    if (gameStage === 'check') {
+    if (isAnswersCheck) {
       checkAnswers();
     }
-  }, [gameStage]);
+  }, [isAnswersCheck]);
 
   return (
     <StyledWordButton

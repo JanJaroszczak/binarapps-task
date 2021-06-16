@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import CommonButton from './CommonButton';
 import Word from './Word';
 
-import { updateWordsData, changeGameStage } from '../store/actions';
+import { updateWordsData, isAnswersCheck } from '../store/actions';
 
 import { gameData } from '../helpers/gameData';
 
@@ -12,12 +12,10 @@ import {
   StyledContainer,
   StyledQuestion,
   StyledGameBoardWrapper,
-  StyledAlert,
 } from './styles/StyledGameScreen';
 
 const GameScreen = () => {
-  const [wordsLocalData, setWordsLocalData] = useState(null);
-  const [isAlertOn, setIsAlertOn] = useState(false);
+  const [wordsData, setWordsData] = useState(null);
 
   const dispatch = useDispatch();
 
@@ -36,13 +34,13 @@ const GameScreen = () => {
   }, []);
 
   const onUpdateWordsDataArray = (clickedWord, isMarked) => {
-    if (wordsLocalData) {
-      const updatedWordsData = wordsLocalData.map((word) => {
+    if (wordsData) {
+      const updatedWordsData = wordsData.map((word) => {
         if (word.word === clickedWord) {
           word.isMarked = isMarked;
         }
       });
-      setWordsLocalData(updatedWordsData);
+      setWordsData(updatedWordsData);
       console.log(wordsDataArray);
     }
   };
@@ -55,30 +53,15 @@ const GameScreen = () => {
     />
   ));
 
-  const wordsStoreData = useSelector(({ wordsData }) => wordsData);
-
   const checkAnswers = () => {
-    const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
-    console.log(isAtLeastOneMarked);
-    if (isAtLeastOneMarked) dispatch(changeGameStage('check'));
-    else {
-      setIsAlertOn(true);
-      setTimeout(() => {
-        setIsAlertOn(false);
-      }, 3000);
-    }
+    dispatch(isAnswersCheck(true));
   };
 
   return (
     <StyledContainer>
       <StyledQuestion>{drawnSet.question}</StyledQuestion>
-      <StyledGameBoardWrapper>
-        {wordsToRender}
-        {/* {isAlertOn && (
-          <StyledAlert>Please choose at least one word.</StyledAlert>
-        )} */}
-      </StyledGameBoardWrapper>
-      <CommonButton clicked={checkAnswers} />
+      <StyledGameBoardWrapper>{wordsToRender}</StyledGameBoardWrapper>
+      <CommonButton clicked={checkAnswers}>Check Answers</CommonButton>
     </StyledContainer>
   );
 };
