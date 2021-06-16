@@ -41,8 +41,8 @@ const WordButton = ({ wordToRender }) => {
   const checkAnswers = () => {
     wordsData.forEach((word) => {
       if (word.word === wordToRender) {
-        if (word.isAnswerCorrect === 'good') setGoodOrBadAnswer('good');
-        else if (word.isAnswerCorrect === 'bad') setGoodOrBadAnswer('bad');
+        if (word.isAnswerCorrect === 'good') setGoodOrBadAnswer('Good');
+        else if (word.isAnswerCorrect === 'bad') setGoodOrBadAnswer('Bad');
       }
     });
   };

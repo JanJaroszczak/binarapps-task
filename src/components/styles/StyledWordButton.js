@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const StyledWordButton = styled.button`
   position: relative;
   color: ${({ goodOrBadAnswer, isMarked }) =>
-    goodOrBadAnswer === 'good'
+    goodOrBadAnswer === 'Good'
       ? '#8EC550'
-      : goodOrBadAnswer === 'bad'
+      : goodOrBadAnswer === 'Bad'
       ? '#F45146'
       : isMarked
       ? 'gray'
@@ -23,5 +23,5 @@ export const StyledResult = styled.span`
   visibility: ${({ goodOrBadAnswer }) =>
     goodOrBadAnswer ? 'visible' : 'hidden'};
   color: ${({ goodOrBadAnswer }) =>
-    goodOrBadAnswer === 'good' ? '#66BA6B' : '#FC9E97'};
+    goodOrBadAnswer === 'Good' ? '#66BA6B' : '#FC9E97'};
 `;
