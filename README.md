@@ -38,5 +38,6 @@ In case of any questions, feel free to contact me via:
 
 - [jan.jaroszczak@gmail.com](mailto:jan.jaroszczak@gmail.com)
 - [LinkedIn](https://www.linkedin.com/in/jan-jaroszczak/)
+- Contact form on my portfolio [website](https://www.janjaroszczak.com/)
 
 <br/>
