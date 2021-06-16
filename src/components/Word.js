@@ -2,7 +2,7 @@ import React from 'react';
 
 import { StyledWord } from './styles/StyledWord';
 
-const Word = () => {
+const Word = ({ word }) => {
   const gridSelfValues = ['start', 'center', 'end'];
 
   const getGridSelfValue = () =>
@@ -16,7 +16,7 @@ const Word = () => {
       gridJustifySelf={getGridSelfValue()}
       gridAlignSelf={getGridSelfValue()}
     >
-      expansion
+      {word}
     </StyledWord>
   );
 };

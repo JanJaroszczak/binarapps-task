@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+export const StyledQuestion = styled.h3`
+  margin: 30px 0;
+  text-align: center;
+  font-size: 2rem;
+  text-transform: capitalize;
+`;
+
 export const StyledGameBoardWrapper = styled.div`
   display: grid;
   grid-template-columns: repeat(4, auto);

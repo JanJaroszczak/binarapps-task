@@ -1,7 +1,7 @@
 export const gameData = [
   {
     question: 'select animals',
-    all_words: [
+    allWords: [
       'hole',
       'sofa',
       'pear',
@@ -15,11 +15,11 @@ export const gameData = [
       'passenger',
       'cow',
     ],
-    good_words: ['tiger', 'cow'],
+    goodWords: ['tiger', 'cow'],
   },
   {
     question: 'select colors',
-    all_words: [
+    allWords: [
       'jeans',
       'existence',
       'ink',
@@ -33,11 +33,11 @@ export const gameData = [
       'black',
       'cakes',
     ],
-    good_words: ['red', 'blue', 'yellow', 'white', 'black'],
+    goodWords: ['red', 'blue', 'yellow', 'white', 'black'],
   },
   {
     question: 'select vehicles',
-    all_words: [
+    allWords: [
       'belief',
       'wire',
       'car',
@@ -48,6 +48,6 @@ export const gameData = [
       'skirt',
       'train',
     ],
-    good_words: ['car', 'bus', 'train'],
+    goodWords: ['car', 'bus', 'train'],
   },
 ];
