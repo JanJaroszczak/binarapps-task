@@ -41,13 +41,13 @@ export const StyledGameBoardWrapper = styled.div`
 `;
 
 export const StyledAlert = styled.span`
+  display: block;
   position: absolute;
   bottom: -27px;
   left: 50%;
   transform: translateX(-50%);
-  display: block;
   width: 270px;
-  font-size: 1.2rem;
   color: red;
+  font-size: 1.2rem;
   text-align: center;
 `;

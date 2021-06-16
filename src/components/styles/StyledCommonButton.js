@@ -12,4 +12,9 @@ export const StyledButton = styled.button`
   &:hover {
     background-color: #e8faff;
   }
+
+  &:focus,
+  &:active {
+    background-color: transparent;
+  }
 `;

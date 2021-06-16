@@ -20,9 +20,9 @@ const ResultScreen = () => {
 
   return (
     <StyledWrapper>
-      <StyledResultScreenText>{`${
-        finalScore > 0 ? 'Congratulations' : 'The end'
-      }, ${playerName}!`}</StyledResultScreenText>
+      <StyledResultScreenText>
+        {`${finalScore > 0 ? 'Congratulations' : 'The end'}, ${playerName}!`}
+      </StyledResultScreenText>
       <StyledResultScreenText>Your score:</StyledResultScreenText>
       <StyledResultScreenText score>{finalScore}</StyledResultScreenText>
     </StyledWrapper>

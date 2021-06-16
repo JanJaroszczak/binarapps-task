@@ -4,9 +4,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import CommonButton from '../components/CommonButton';
 import Word from '../components/Word';
 
-import { updateWordsData, changeGameStage } from '../store/actions';
-
 import { gameData } from '../helpers/gameData';
+import { updateWordsData, changeGameStage } from '../store/actions';
 
 import {
   StyledContainer,
@@ -21,8 +20,6 @@ const GameScreen = () => {
 
   const dispatch = useDispatch();
 
-  // const drawnSet = gameData[Math.floor(Math.random() * gameData.length)];
-
   const drawnSet = React.useMemo(
     () => gameData[Math.floor(Math.random() * gameData.length)],
     []
@@ -36,7 +33,6 @@ const GameScreen = () => {
   }));
 
   useEffect(() => {
-    console.log('render');
     dispatch(updateWordsData(wordsDataArray));
   }, []);
 
@@ -48,17 +44,8 @@ const GameScreen = () => {
         }
       });
       setWordsLocalData(updatedWordsData);
-      console.log(wordsDataArray);
     }
   };
-
-  // const wordsToRender = drawnSet.allWords.map((word, index) => (
-  //   <Word
-  //     wordToRender={word}
-  //     key={index}
-  //     updateWordsDataArray={onUpdateWordsDataArray}
-  //   />
-  // ));
 
   const wordsToRender = React.useMemo(
     () =>
@@ -79,12 +66,10 @@ const GameScreen = () => {
     if (gameStage === 'check') dispatch(changeGameStage('finish'));
     else {
       const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
-      console.log(isAtLeastOneMarked);
       if (isAtLeastOneMarked) {
         setIsAlertOn(false);
         dispatch(changeGameStage('check'));
       } else {
-        console.log('log from else');
         setIsAlertOn(true);
       }
     }

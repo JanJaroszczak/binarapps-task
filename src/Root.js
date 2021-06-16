@@ -7,16 +7,7 @@ import ResultScreen from './screens/ResultScreen';
 import StartScreen from './screens/StartScreen';
 
 const Root = () => {
-  // const [gameStage, setGameStage] = useState('start');
-  // const [enteredNickname, setEnteredNickname] = useState('');
-  // const [gameResult, setGameResult] = useState(null);
-
   const gameStage = useSelector(({ gameStage }) => gameStage);
-
-  // const goToGameScreen = (enteredNickname) => {
-  //   setEnteredNickname(enteredNickname);
-  //   setGameStage('game');
-  // };
 
   return (
     <>
@@ -28,7 +19,6 @@ const Root = () => {
       ) : (
         <ResultScreen />
       )}
-      {/* <GameScreen /> */}
     </>
   );
 };
