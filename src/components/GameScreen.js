@@ -73,19 +73,23 @@ const GameScreen = () => {
   );
 
   const wordsStoreData = useSelector(({ wordsData }) => wordsData);
+  const gameStage = useSelector(({ gameStage }) => gameStage);
 
-  const checkAnswers = () => {
-    const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
-    console.log(isAtLeastOneMarked);
-    if (isAtLeastOneMarked) {
-      setIsAlertOn(false);
-      dispatch(changeGameStage('check'));
-    } else {
-      console.log('log from else');
-      setIsAlertOn(true);
-      setTimeout(() => {
+  const onClickHandler = () => {
+    if (gameStage === 'check') dispatch(changeGameStage('finish'));
+    else {
+      const isAtLeastOneMarked = wordsStoreData.some((word) => word.isMarked);
+      console.log(isAtLeastOneMarked);
+      if (isAtLeastOneMarked) {
         setIsAlertOn(false);
-      }, 3000);
+        dispatch(changeGameStage('check'));
+      } else {
+        console.log('log from else');
+        setIsAlertOn(true);
+        setTimeout(() => {
+          setIsAlertOn(false);
+        }, 3000);
+      }
     }
   };
 
@@ -98,7 +102,7 @@ const GameScreen = () => {
           <StyledAlert>Please choose at least one word.</StyledAlert>
         )}
       </StyledGameBoardWrapper>
-      <CommonButton clicked={checkAnswers} />
+      <CommonButton clicked={onClickHandler} />
     </StyledContainer>
   );
 };
