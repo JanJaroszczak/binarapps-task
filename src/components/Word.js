@@ -3,21 +3,20 @@ import React from 'react';
 import { StyledWord } from './styles/StyledWord';
 
 const Word = () => {
-  const gridJustifySelfValues = ['start', 'center', 'end'];
+  const gridSelfValues = ['start', 'center', 'end'];
 
-  const getGridJustifySelfValue = () =>
-    gridJustifySelfValues[
-      Math.floor(Math.random() * gridJustifySelfValues.length)
-    ];
+  const getGridSelfValue = () =>
+    gridSelfValues[Math.floor(Math.random() * gridSelfValues.length)];
 
   const getGridSpanNumber = () => Math.floor(Math.random() * 2) + 1;
 
   return (
     <StyledWord
       gridSpan={getGridSpanNumber()}
-      gridJustifySelf={getGridJustifySelfValue()}
+      gridJustifySelf={getGridSelfValue()}
+      gridAlignSelf={getGridSelfValue()}
     >
-      TESTasdasdsa
+      expansion
     </StyledWord>
   );
 };
