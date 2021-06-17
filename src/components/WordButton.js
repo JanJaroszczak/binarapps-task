@@ -15,7 +15,7 @@ const WordButton = ({ wordToRender }) => {
   const gameStage = useSelector(({ gameStage }) => gameStage);
 
   const onMarkHandler = () => {
-    if (wordsData) {
+    if (wordsData && gameStage === 'game') {
       const updatedWordsData = wordsData.map((word) => {
         if (word.word === wordToRender) {
           let result;
